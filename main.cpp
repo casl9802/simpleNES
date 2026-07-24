@@ -1,3 +1,5 @@
+#include "iostream"
+
 #include "Cartridge.h"
 #include "Bus.h"
 #include "CPU.h"
@@ -42,6 +44,11 @@ int main()
         cpu.Clock();
     }
 
+    bus.cpuWrite(0x0000, 42);
+    bus.cpuWrite(0x0800, 84);
+
+    std::cout << (int)bus.cpuRead(0x0000) << '\n';
+    std::cout << (int)bus.cpuRead(0x0800) << '\n';
 
     return 0;
 }

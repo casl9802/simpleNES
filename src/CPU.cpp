@@ -59,39 +59,58 @@ void CPU::Clock()
             break;
         }
 
-    case 0xA2: // LDX Immediate
-    {
-        X = bus->cpuRead(PC);
-        PC++;
+        // LDX #Inmediato (Load X Register)
+        // Carga un valor de 8 bits directamente en el Registro de Índice X.
+        case 0xA2:
+        {
+            // Lee el valor constante almacenado en la dirección actual del PC.
+            X = bus->cpuRead(PC);
 
-        std::cout << "LDX executed. X = " << (int)X << "\n";
-        break;
-    }
+            // Incrementa el Program Counter para avanzar a la siguiente instrucción.
+            PC++;
 
-    case 0xA0: // LDY Immediate
-    {
-        Y = bus->cpuRead(PC);
-        PC++;
+            std::cout << "LDX executed. X = " << (int)X << "\n";
+            break;
+        }
 
-        std::cout << "LDY executed. Y = " << (int)Y << "\n";
-        break;
-    }
+        // LDY #Inmediato (Load Y Register)
+        // Carga un valor de 8 bits directamente en el Registro de Índice Y.
+        case 0xA0:
+        {
+            // Lee el valor constante almacenado en la dirección actual del PC.
+            Y = bus->cpuRead(PC);
 
-    case 0xAA: // TAX
-    {
-        X = A;
+            // Incrementa el Program Counter para avanzar a la siguiente instrucción.
+            PC++;
 
-        std::cout << "TAX executed. X = " << (int)X << "\n";
-        break;
-    }
+            std::cout << "LDY executed. Y = " << (int)Y << "\n";
+            break;
+        }
 
-    case 0xE8: // INX
-    {
-        X++;
+        // TAX (Transfer Accumulator to X)
+        // Copia el valor contenido en el Acumulador (A) hacia el Registro de Índice X.
+        // Modo de direccionamiento: Implícito / Implied (no requiere operandos adicionales en memoria).
+        case 0xAA:
+        {
+            // Transfiere directamente el contenido del registro A hacia X.
+            X = A;
 
-        std::cout << "INX executed. X = " << (int)X << "\n";
-        break;
-    }
+            std::cout << "TAX executed. X = " << (int)X << "\n";
+            break;
+        }
+
+        // INX (Increment X Register)
+        // Incrementa en 1 el valor del Registro de Índice X.
+        // Modo de direccionamiento: Implícito / Implied.
+        case 0xE8:
+        {
+            // Incrementa X. Al ser un entero de 8 bits (uint8_t), si X es 0xFF (255)
+            // desbordará automáticamente a 0x00 (256 % 256 = 0), replicando el "wrap-around" del hardware real.
+            X++;
+
+            std::cout << "INX executed. X = " << (int)X << "\n";
+            break;
+        }
 
         default:
             // Manejo de Opcodes no implementados o instrucciones 'Ilegales' de la 6502.

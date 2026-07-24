@@ -23,3 +23,16 @@
 90	432	8065607395010970	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
 28	455	8065607394390136	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
 455	773	8065607398659916	NesEmulator.exe	ca0e1acb6931f572
+4	190	8065650595815615	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
+190	272	8065650597681694	NesEmulator.exe	ca0e1acb6931f572
+6	181	8065653265557831	CMakeFiles/NesEmulator.dir/src/Bus.cpp.obj	ee000f27c97a1504
+9	210	8065653265586481	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
+3	227	8065653510994521	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+228	310	8065653513248814	NesEmulator.exe	ca0e1acb6931f572
+3	227	8065655744626595	CMakeFiles/NesEmulator.dir/src/Bus.cpp.obj	ee000f27c97a1504
+6	164	8065656510770413	CMakeFiles/NesEmulator.dir/src/Bus.cpp.obj	ee000f27c97a1504
+9	195	8065656510790341	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
+3	216	8065656510736373	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+216	294	8065656512869898	NesEmulator.exe	ca0e1acb6931f572
+3	218	8065657120750010	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+218	294	8065657122898962	NesEmulator.exe	ca0e1acb6931f572

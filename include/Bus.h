@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <array>
 
 // Forward declaration para evitar dependencias circulares de compilación.
 class Cartridge;
@@ -24,4 +25,6 @@ public:
 private:
     // RAM interna del sistema (2 KB / 2048 bytes) mapeada en la región $0000 - $07FF.
     uint8_t ram[2048]{};
+
+    std::array<uint8_t, 2048> cpuRam{};
 };
