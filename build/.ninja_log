@@ -1,0 +1,25 @@
+# ninja log v7
+19	419	8063819906872979	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+83	419	8063819907500291	CMakeFiles/NesEmulator.dir/src/Cartridge.cpp.obj	4bffd7ad6b7687c2
+245	321	8062996107748724	NesEmulator.exe	1727173162e99fe0
+12	993	8063821376751592	build.ninja	b362d0e0fdfdec1f
+12	993	8063821376751592	C:/Users/caral/projects/nes_emulator/build/cmake_install.cmake	b362d0e0fdfdec1f
+15	173	8063821377141598	CMakeFiles/NesEmulator.dir/src/Bus.cpp.obj	ee000f27c97a1504
+12	184	8063821377111609	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+17	200	8063821377171594	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
+204	283	8063821379037275	NesEmulator.exe	ca0e1acb6931f572
+19	178	8063824383090761	CMakeFiles/NesEmulator.dir/src/Bus.cpp.obj	ee000f27c97a1504
+14	193	8063824383030813	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+22	212	8063824383110762	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
+17	259	8063824383060770	CMakeFiles/NesEmulator.dir/src/Cartridge.cpp.obj	4bffd7ad6b7687c2
+259	340	8063824385487837	NesEmulator.exe	ca0e1acb6931f572
+14	180	8063826581481400	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+18	194	8063826581514549	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
+194	269	8063826583274583	NesEmulator.exe	ca0e1acb6931f572
+19	172	8063828655760417	CMakeFiles/NesEmulator.dir/src/Bus.cpp.obj	ee000f27c97a1504
+13	181	8063828655710433	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+16	239	8063828655740424	CMakeFiles/NesEmulator.dir/src/Cartridge.cpp.obj	4bffd7ad6b7687c2
+239	315	8063828657960089	NesEmulator.exe	ca0e1acb6931f572
+90	432	8065607395010970	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
+28	455	8065607394390136	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+455	773	8065607398659916	NesEmulator.exe	ca0e1acb6931f572
