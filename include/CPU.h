@@ -26,6 +26,14 @@ public:
 
     uint8_t opcode = 0; // Almacena el opcode de 8 bits leído en la fase de Fetch. 
 
+    uint16_t addr_abs = 0;
+
+    uint8_t IMM();
+    uint8_t ZP0();
+    uint8_t ABS();
+
+    uint8_t Fetch();
+
     enum FLAGS6502
     {
         C = 1 << 0,

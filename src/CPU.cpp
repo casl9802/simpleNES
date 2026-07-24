@@ -40,22 +40,18 @@ void CPU::Clock()
     {
         // LDA #Inmediato (Load Accumulator)
         // Carga un valor constante de 8 bits directamente en el Registro Acumulador (A).
-        case 0xA9: 
+        case 0xA9: // LDA Immediate
         {
-            // Lee el argumento del operando que se encuentra inmediatamente después del opcode en memoria.
-            uint8_t value = bus->cpuRead(PC);
+            IMM();
 
-            // Incrementa nuevamente el PC para dejarlo posicionado en la siguiente instrucción.
-            PC++;
+            A = Fetch();
 
-            // Asigna el valor leído al registro Acumulador.
-            A = value;
             UpdateZN(A);
 
-            std::cout 
-                << "LDA executed. A = "
+            std::cout
+                << "LDA Immediate executed. A = "
                 << std::dec
-                << (int)A
+                << static_cast<int>(A)
                 << "\n";
 
             break;
@@ -121,21 +117,14 @@ void CPU::Clock()
 
         case 0x8D: // STA Absolute
         {
-            uint8_t lo = bus->cpuRead(PC);
-            PC++;
+            ABS();
 
-            uint8_t hi = bus->cpuRead(PC);
-            PC++;
-
-            uint16_t addr = (static_cast<uint16_t>(hi) << 8) | lo;
-
-            bus->cpuWrite(addr, A);
+            bus->cpuWrite(addr_abs, A);
 
             std::cout
-                << "STA executed. Stored A="
-                << std::dec << static_cast<int>(A)
-                << " at 0x"
-                << std::hex << addr
+                << "STA Absolute executed. A="
+                << std::dec
+                << static_cast<int>(A)
                 << "\n";
 
             break;
@@ -185,6 +174,40 @@ void CPU::Clock()
             break;
         }
 
+        case 0xA5: // LDA Zero Page
+        {
+            ZP0();
+
+            A = Fetch();
+
+            UpdateZN(A);
+
+            std::cout
+                << "LDA Zero Page executed. A = "
+                << std::dec
+                << static_cast<int>(A)
+                << "\n";
+
+            break;
+        }
+
+        case 0xAD: // LDA Absolute
+        {
+            ABS();
+
+            A = Fetch();
+
+            UpdateZN(A);
+
+            std::cout
+                << "LDA Absolute executed. A = "
+                << std::dec
+                << static_cast<int>(A)
+                << "\n";
+
+            break;
+        }
+
         default:
             // Manejo de Opcodes no implementados o instrucciones 'Ilegales' de la 6502.
             std::cout 
@@ -195,6 +218,48 @@ void CPU::Clock()
 
             break;
     }
+}
+
+uint8_t CPU::IMM()
+{
+    // El operando está inmediatamente después del opcode.
+    addr_abs = PC;
+
+    PC++;
+
+    return 0;
+}
+
+uint8_t CPU::ZP0()
+{
+    addr_abs = bus->cpuRead(PC);
+
+    PC++;
+
+    // Zero Page sólo puede apuntar a $0000-$00FF.
+    addr_abs &= 0x00FF;
+
+    return 0;
+}
+
+uint8_t CPU::ABS()
+{
+    uint8_t lo = bus->cpuRead(PC);
+    PC++;
+
+    uint8_t hi = bus->cpuRead(PC);
+    PC++;
+
+    addr_abs =
+        (static_cast<uint16_t>(hi) << 8)
+        | lo;
+
+    return 0;
+}
+
+uint8_t CPU::Fetch()
+{
+    return bus->cpuRead(addr_abs);
 }
 
 bool CPU::GetFlag(FLAGS6502 f)

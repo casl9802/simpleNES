@@ -12,31 +12,30 @@ int main()
     cartridge.Load("../roms/SuperMarioBros.nes");
 
     // LDA #$42
+    // Immediate
     cartridge.prgROM[0] = 0xA9;
     cartridge.prgROM[1] = 0x42;
 
-    // STA $0200
+    // STA $0010
     cartridge.prgROM[2] = 0x8D;
-    cartridge.prgROM[3] = 0x00;
-    cartridge.prgROM[4] = 0x02;
+    cartridge.prgROM[3] = 0x10;
+    cartridge.prgROM[4] = 0x00;
 
-    // LDX #$55
-    cartridge.prgROM[5] = 0xA2;
-    cartridge.prgROM[6] = 0x55;
+    // LDA $10
+    // Zero Page
+    cartridge.prgROM[5] = 0xA5;
+    cartridge.prgROM[6] = 0x10;
 
-    // STX $0201
-    cartridge.prgROM[7] = 0x8E;
-    cartridge.prgROM[8] = 0x01;
+    // STA $0200
+    cartridge.prgROM[7] = 0x8D;
+    cartridge.prgROM[8] = 0x00;
     cartridge.prgROM[9] = 0x02;
 
-    // LDY #$99
-    cartridge.prgROM[10] = 0xA0;
-    cartridge.prgROM[11] = 0x99;
-
-    // STY $0202
-    cartridge.prgROM[12] = 0x8C;
-    cartridge.prgROM[13] = 0x02;
-    cartridge.prgROM[14] = 0x02;
+    // LDA $0200
+    // Absolute
+    cartridge.prgROM[10] = 0xAD;
+    cartridge.prgROM[11] = 0x00;
+    cartridge.prgROM[12] = 0x02;
 
     Bus bus;
 
@@ -51,16 +50,22 @@ int main()
 
     // 2. Bucle principal de prueba:
     // Simula 6 pulsos de reloj / ciclos de instrucción para ejecutar los primeros opcodes almacenados en la PRG-ROM.
-    for(int i = 0; i < 6; i++)
+    for(int i = 0; i < 5; i++)
     {
         cpu.Clock();
     }
 
-    bus.cpuWrite(0x0000, 42);
-    bus.cpuWrite(0x0800, 84);
+    std::cout
+        << "$0010 = 0x"
+        << std::hex
+        << static_cast<int>(bus.cpuRead(0x0010))
+        << "\n";
 
-    std::cout << (int)bus.cpuRead(0x0000) << '\n';
-    std::cout << (int)bus.cpuRead(0x0800) << '\n';
+    std::cout
+        << "$0200 = 0x"
+        << std::hex
+        << static_cast<int>(bus.cpuRead(0x0200))
+        << "\n";
 
     cpu.DumpState();
 
