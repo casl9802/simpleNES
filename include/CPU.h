@@ -38,10 +38,28 @@ public:
         N = 1 << 7
     };
     
+    /**
+     * @brief Consulta el estado (1 o 0) de una bandera específica en el registro 'status'.
+     * @param f Máscara de bits del enum FLAGS6502 (ej. Z = 0x02, N = 0x80).
+     */
     bool GetFlag(FLAGS6502 f);
+
+    /**
+     * @brief Modifica el bit de una bandera específica en el registro 'status'.
+     * @param f Máscara de bits correspondiente a la bandera.
+     * @param value true para encender el bit (1), false para apagarlo (0).
+     */
     void SetFlag(FLAGS6502 f, bool value);
 
+    /**
+     * @brief Helper para actualizar automáticamente las banderas Zero (Z) y Negative (N).
+     * Debe invocarse tras cualquier operación que altere A, X, Y o cargue valores desde memoria.
+     */
     void UpdateZN(uint8_t value);
+
+    /**
+     * @brief Imprime en consola un diagnóstico completo del estado interno de los registros y banderas.
+     */
     void DumpState();
 
     // Simula la señal de interrupción física de RESET (Inicialización del hardware).

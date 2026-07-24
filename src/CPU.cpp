@@ -119,6 +119,72 @@ void CPU::Clock()
             break;
         }
 
+        case 0x8D: // STA Absolute
+        {
+            uint8_t lo = bus->cpuRead(PC);
+            PC++;
+
+            uint8_t hi = bus->cpuRead(PC);
+            PC++;
+
+            uint16_t addr = (static_cast<uint16_t>(hi) << 8) | lo;
+
+            bus->cpuWrite(addr, A);
+
+            std::cout
+                << "STA executed. Stored A="
+                << std::dec << static_cast<int>(A)
+                << " at 0x"
+                << std::hex << addr
+                << "\n";
+
+            break;
+        }
+
+        case 0x8E: // STX Absolute
+        {
+            uint8_t lo = bus->cpuRead(PC);
+            PC++;
+
+            uint8_t hi = bus->cpuRead(PC);
+            PC++;
+
+            uint16_t addr = (static_cast<uint16_t>(hi) << 8) | lo;
+
+            bus->cpuWrite(addr, X);
+
+            std::cout
+                << "STX executed. Stored X="
+                << std::dec << static_cast<int>(X)
+                << " at 0x"
+                << std::hex << addr
+                << "\n";
+
+            break;
+        }
+
+        case 0x8C: // STY Absolute
+        {
+            uint8_t lo = bus->cpuRead(PC);
+            PC++;
+
+            uint8_t hi = bus->cpuRead(PC);
+            PC++;
+
+            uint16_t addr = (static_cast<uint16_t>(hi) << 8) | lo;
+
+            bus->cpuWrite(addr, Y);
+
+            std::cout
+                << "STY executed. Stored Y="
+                << std::dec << static_cast<int>(Y)
+                << " at 0x"
+                << std::hex << addr
+                << "\n";
+
+            break;
+        }
+
         default:
             // Manejo de Opcodes no implementados o instrucciones 'Ilegales' de la 6502.
             std::cout 
