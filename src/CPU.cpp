@@ -2,6 +2,7 @@
 #include "Bus.h"
 
 #include <iostream>
+#include <iomanip>
 
 void CPU::Reset()
 {
@@ -49,6 +50,7 @@ void CPU::Clock()
 
             // Asigna el valor leído al registro Acumulador.
             A = value;
+            UpdateZN(A);
 
             std::cout 
                 << "LDA executed. A = "
@@ -68,6 +70,8 @@ void CPU::Clock()
 
             // Incrementa el Program Counter para avanzar a la siguiente instrucción.
             PC++;
+            
+            UpdateZN(X);
 
             std::cout << "LDX executed. X = " << (int)X << "\n";
             break;
@@ -82,6 +86,7 @@ void CPU::Clock()
 
             // Incrementa el Program Counter para avanzar a la siguiente instrucción.
             PC++;
+            UpdateZN(Y);
 
             std::cout << "LDY executed. Y = " << (int)Y << "\n";
             break;
@@ -94,6 +99,7 @@ void CPU::Clock()
         {
             // Transfiere directamente el contenido del registro A hacia X.
             X = A;
+            UpdateZN(X);
 
             std::cout << "TAX executed. X = " << (int)X << "\n";
             break;
@@ -107,6 +113,7 @@ void CPU::Clock()
             // Incrementa X. Al ser un entero de 8 bits (uint8_t), si X es 0xFF (255)
             // desbordará automáticamente a 0x00 (256 % 256 = 0), replicando el "wrap-around" del hardware real.
             X++;
+            UpdateZN(X);
 
             std::cout << "INX executed. X = " << (int)X << "\n";
             break;
@@ -122,4 +129,56 @@ void CPU::Clock()
 
             break;
     }
+}
+
+bool CPU::GetFlag(FLAGS6502 f)
+{
+    return (status & f) != 0;
+}
+
+void CPU::SetFlag(FLAGS6502 f, bool value)
+{
+    if (value)
+        status |= f;
+    else
+        status &= ~f;
+}
+
+void CPU::UpdateZN(uint8_t value)
+{
+    SetFlag(Z, value == 0);
+    SetFlag(N, value & 0x80);
+}
+
+void CPU::DumpState()
+{
+    std::cout << "===== CPU STATE =====\n";
+
+    std::cout << std::hex << std::uppercase;
+
+    std::cout << "PC: 0x" << std::setw(4) << std::setfill('0') << PC << "\n";
+    std::cout << "Opcode actual: 0x" << std::setw(2) << std::setfill('0') << (int)opcode << "\n";
+
+    std::cout << std::dec;
+    std::cout << "A:  0x" << std::hex << std::setw(2) << std::setfill('0') << (int)A
+               << " (" << std::dec << (int)A << ")\n";
+    std::cout << "X:  0x" << std::hex << std::setw(2) << std::setfill('0') << (int)X
+               << " (" << std::dec << (int)X << ")\n";
+    std::cout << "Y:  0x" << std::hex << std::setw(2) << std::setfill('0') << (int)Y
+               << " (" << std::dec << (int)Y << ")\n";
+
+    std::cout << "Status: 0x" << std::hex << std::setw(2) << std::setfill('0') << (int)status << "\n";
+
+    // Desglose de flags individuales (ajusta los nombres a tu enum FLAGS6502 real)
+    std::cout << "Flags: "
+               << "N=" << GetFlag(N) << " "
+               << "V=" << GetFlag(V) << " "
+               << "U=" << GetFlag(U) << " "
+               << "B=" << GetFlag(B) << " "
+               << "D=" << GetFlag(D) << " "
+               << "I=" << GetFlag(I) << " "
+               << "Z=" << GetFlag(Z) << " "
+               << "C=" << GetFlag(C) << "\n";
+
+    std::cout << "======================\n";
 }

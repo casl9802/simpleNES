@@ -23,7 +23,7 @@ int main()
     cartridge.prgROM[5] = 0x55;
 
     cartridge.prgROM[6] = 0xA0;
-    cartridge.prgROM[7] = 0x99;
+    cartridge.prgROM[7] = 0x00;
 
     Bus bus;
 
@@ -49,6 +49,8 @@ int main()
 
     std::cout << (int)bus.cpuRead(0x0000) << '\n';
     std::cout << (int)bus.cpuRead(0x0800) << '\n';
+
+    cpu.DumpState();
 
     return 0;
 }

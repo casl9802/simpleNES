@@ -36,3 +36,15 @@
 216	294	8065656512869898	NesEmulator.exe	ca0e1acb6931f572
 3	218	8065657120750010	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
 218	294	8065657122898962	NesEmulator.exe	ca0e1acb6931f572
+6	204	8065660359191320	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
+3	228	8065660359161333	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+228	309	8065660361409788	NesEmulator.exe	ca0e1acb6931f572
+3	221	8065664723580844	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+6	225	8065664723610897	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
+225	303	8065664725805744	NesEmulator.exe	ca0e1acb6931f572
+3	223	8065664883542022	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+224	303	8065664885739997	NesEmulator.exe	ca0e1acb6931f572
+3	210	8065667111299035	CMakeFiles/NesEmulator.dir/src/CPU.cpp.obj	f641e79f074bfc7d
+210	288	8065667113376052	NesEmulator.exe	ca0e1acb6931f572
+3	210	8065667463425239	CMakeFiles/NesEmulator.dir/main.cpp.obj	e1b6a8f7ee6f428c
+210	291	8065667465487347	NesEmulator.exe	ca0e1acb6931f572

@@ -26,6 +26,23 @@ public:
 
     uint8_t opcode = 0; // Almacena el opcode de 8 bits leído en la fase de Fetch. 
 
+    enum FLAGS6502
+    {
+        C = 1 << 0,
+        Z = 1 << 1,
+        I = 1 << 2,
+        D = 1 << 3,
+        B = 1 << 4,
+        U = 1 << 5,
+        V = 1 << 6,
+        N = 1 << 7
+    };
+    
+    bool GetFlag(FLAGS6502 f);
+    void SetFlag(FLAGS6502 f, bool value);
+
+    void UpdateZN(uint8_t value);
+    void DumpState();
 
     // Simula la señal de interrupción física de RESET (Inicialización del hardware).
     void Reset();
